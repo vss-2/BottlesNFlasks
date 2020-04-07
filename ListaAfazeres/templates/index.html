@@ -1,0 +1,29 @@
+{% entends 'base.html' %}
+
+{% block head %}
+<title>Lista de Afazeres</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <table>
+        <tr>
+            <th>Tarefas</th>
+            <th>Data</th>
+            <th>Opções</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>
+                <a href="">Apagar</a>
+                <a href="">Editar</a>
+            </td>
+        </tr>
+    </table>
+    <form action="/" method="POST">
+        <input type="text" name="descricao" id="content">
+        <input type="submit" value="Adicionar">
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{
+    "name": "Lista_Afazeres",
+    "version": "1.0.0",
+    "private": false,
+    "dependencies": {
+        "python3": "^3.6.9",
+        "flask": "^1.1.2",
+        "sqlalchemy": "^1.3",
+        "virtualenv": "^20.0.16"
+    },
+    "scripts": {
+        "activate": "source environment/bin/activate"
+    },
+    "author": "github.com/vss-2/"
+}
