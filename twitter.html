@@ -20,6 +20,7 @@
     }
     a{
         color: indigo;
+        
     }
     .navbar-default{
         background-color: blue;
@@ -53,6 +54,12 @@
     }
     ul {
         padding-inline-start: 0px;
+    }
+    a:link, a:visited, a:visited:active {
+        text-decoration: none;
+    }
+    .tweetinfo, a:hover {
+        color: gray;
     }
 </style>
 <body>
@@ -89,10 +96,10 @@
             <a href='#top' style='padding-left: 10vw;'>Tweets</a>
             <!--- AQUI VAI PARA FOR PARA BUSCAR NO BANCO DE DADOS OS TWEETS --->
             <div class='tweet'>
-                <a> Nome </a>
-                <a> Data </a>
+                <a href='/thistweet' class='tweetinfo'> Nome </a>
+                <a href='/twistweet' class='tweetinfo'> Data </a>
                 <div>
-                    <a> Texto </a>
+                    <p> Texto </p>
                 </div>
             </div>
         </div>
