@@ -1,9 +1,10 @@
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, render_template, url_for, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
-app = Flash(__name__)
+app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 # 3 barras são caminhos relativos, 4 barras são caminhos absolutos
 
@@ -16,12 +17,12 @@ class Tarefa(db.Model):
         conteudo = db.Column(db.String(200), nullable = False)
         data_criacao = db.Column(db.DateTime, default = datetime.utcnow)
 
-        # Qual = retorna qual tarefa estamos tratando 
+        # Qual = retorna qual tarefa estamos tratando
         # %r = representação de um objeto (novo ou ponteiro para existente)
         def __qual__(self):
                 return '<Tarefa %r>' % self.id
 
-@app.route('/', method = ['POST', 'GET'])
+@app.route('/', methods = ['POST', 'GET'])
 def index():
         if request.method == 'POST':
                 # Se estiver tentando submeter uma nova nota
@@ -31,7 +32,7 @@ def index():
                 try:
                         db.session.add(nova_tarefa)
                         db.session.commit()
-                        return redirect('/')
+                        return redirect('/index.html')
                 except:
                         return 'Houve um erro ao adicionar sua tarefa'
         else:

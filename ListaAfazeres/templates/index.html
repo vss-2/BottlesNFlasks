@@ -1,7 +1,6 @@
-{% entends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block head %}
-<title>Lista de Afazeres</title>
 {% endblock %}
 
 {% block body %}
@@ -12,14 +11,16 @@
             <th>Data</th>
             <th>Opções</th>
         </tr>
+        {% for tarefa in todas_tarefas %}
         <tr>
-            <td></td>
-            <td></td>
+            <td>{{ tarefa.conteudo }}</td>
+            <td>{{ tarefa.data_criacao }}</td>
             <td>
                 <a href="">Apagar</a>
                 <a href="">Editar</a>
             </td>
         </tr>
+        {% endfor %}
     </table>
     <form action="/" method="POST">
         <input type="text" name="descricao" id="content">
