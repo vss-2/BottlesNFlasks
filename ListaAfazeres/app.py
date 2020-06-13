@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from http.client import HTTPException
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -21,6 +22,15 @@ class Tarefa(db.Model):
         # %r = representação de um objeto (novo ou ponteiro para existente)
         def __qual__(self):
                 return '<Tarefa %r>' % self.id
+
+        # Esta função existia anteriormente no SQLAlchemy
+        # em resumo, ela apenas trata exceção de não encontrado no banco
+        def det_or_404(id):
+                busca = db.Query.get_or_404(id)
+                if busca != None:
+                        return busca
+                else:
+                        return HTTPException(code=404)
 
 @app.route('/', methods = ['POST', 'GET'])
 def index():
@@ -46,8 +56,7 @@ def deletar(id):
         # Não há methods pois não existe tela de deletar, apenas solicitação
         # Vai ver a tarefa no db e mover o ponteiro para ela pegando seu id,
         # caso a tarefa não seja encontrada, retorna erro 404
-        tarefa_apagar = Tarefa.get_or_404(id)
-
+        tarefa_apagar = Tarefa.query.get_or_404(id)
         try:
                 db.session.delete(tarefa_apagar)
                 db.session.commit()
@@ -62,7 +71,7 @@ def editar(id):
 
         if request.method == 'POST':
                 # Você editou o conteúdo, tenho que novamente adicioná-lo ao db
-                tarefa.conteudo = request.form['conteudo']
+                tarefa_editar.conteudo = request.form['conteudo']
 
                 try:
                         db.session.commit()
@@ -72,7 +81,7 @@ def editar(id):
         
         else:
                 # Você apenas está na tela de edição
-                return render_template('edit.html', Tarefa = tarefa_editar)
+                return render_template('edit.html', tarefa = tarefa_editar)
 
 
 if __name__ == "__main__":
