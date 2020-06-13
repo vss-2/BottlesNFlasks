@@ -32,14 +32,48 @@ def index():
                 try:
                         db.session.add(nova_tarefa)
                         db.session.commit()
-                        return redirect('/index.html')
+                        return redirect('/')
                 except:
                         return 'Houve um erro ao adicionar sua tarefa'
         else:
                 # Senão devolva o GET do index
                 # Contendo as tarefas, tal que ordenadas pela data de criação para todas existentes
                 todas_tarefas = Tarefa.query.order_by(Tarefa.data_criacao).all()
-                return render_template('index.html', Tarefa = todas_tarefas)
+                return render_template('index.html', todas_tarefas = todas_tarefas)
+
+@app.route('/deletar/<int:id>')
+def deletar(id):
+        # Não há methods pois não existe tela de deletar, apenas solicitação
+        # Vai ver a tarefa no db e mover o ponteiro para ela pegando seu id,
+        # caso a tarefa não seja encontrada, retorna erro 404
+        tarefa_apagar = Tarefa.get_or_404(id)
+
+        try:
+                db.session.delete(tarefa_apagar)
+                db.session.commit()
+                return redirect('/')
+        except:
+                'Houve um problema ao remover a tarefa, ela não foi encontrada no banco!'
+        
+
+@app.route('/edit/<int:id>', methods=['GET', 'POST'])
+def editar(id):
+        tarefa_editar = Tarefa.query.get_or_404(id)
+
+        if request.method == 'POST':
+                # Você editou o conteúdo, tenho que novamente adicioná-lo ao db
+                tarefa.conteudo = request.form['conteudo']
+
+                try:
+                        db.session.commit()
+                        return redirect('/')
+                except:
+                        return 'Houve um erro ao atualizar sua tarefa!'
+        
+        else:
+                # Você apenas está na tela de edição
+                return render_template('edit.html', Tarefa = tarefa_editar)
+
 
 if __name__ == "__main__":
         app.run(debug = True)

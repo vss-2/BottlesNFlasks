@@ -10,6 +10,9 @@ virtualenv environment
 ### Ativando virtual env
 source environment/bin/activate
 
+### Desativando virtual env
+deactivate
+
 ### Ativando server
 python3 app.py
 
@@ -19,3 +22,5 @@ python3
 from app import db
 db.create_all()
 ```
+
+#### Baseado nesse vídeo do [FreeCodeCamp](https://www.youtube.com/watch?v=Z1RJmh_OqeA)

@@ -16,8 +16,8 @@
             <td>{{ tarefa.conteudo }}</td>
             <td>{{ tarefa.data_criacao }}</td>
             <td>
-                <a href="">Apagar</a>
-                <a href="">Editar</a>
+                <a href="/deletar/{{tarefa.id}}">Apagar</a>
+                <a href="/edit//{{tarefa.id}}">Editar</a>
             </td>
         </tr>
         {% endfor %}
