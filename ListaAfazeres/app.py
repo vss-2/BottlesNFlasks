@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for, redirect, request
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from datetime import datetime, timezone
 from http.client import HTTPException
 
 app = Flask(__name__)
@@ -16,7 +16,7 @@ class Tarefa(db.Model):
         # Cada nota tem também a data de sua criação
         id = db.Column(db.Integer, primary_key = True)
         conteudo = db.Column(db.String(200), nullable = False)
-        data_criacao = db.Column(db.DateTime, default = datetime.utcnow)
+        data_criacao = db.Column(db.DateTime, default = datetime.now)
 
         # Qual = retorna qual tarefa estamos tratando
         # %r = representação de um objeto (novo ou ponteiro para existente)

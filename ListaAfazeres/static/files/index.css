@@ -1,0 +1,68 @@
+td {
+        font-size: 18px;
+}
+
+input.textfield {
+        border: none;
+        border-radius: 5px;
+        color: darkblue;
+        background-color: lightskyblue;
+        padding-left: 5px;
+}
+
+td.right {
+        background-color: beige;
+        border: none;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+}
+
+td.left {
+        background-color: beige;
+        border: none;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+}
+
+td.middle {
+        background-color: beige;
+        border: none;
+}
+
+table {
+        display: contents;
+}
+
+td {
+        text-align: center;
+}
+
+a {
+        text-emphasis: none;
+        text-decoration: none;
+}
+
+a.delete {
+        color: lightsalmon;
+}
+
+a.edit {
+        color: lightslategrey;
+}
+
+input.button {
+        border: none;
+        color: rgb(212, 117, 0);
+        border-radius: 5px;
+        background-color: rgb(255, 255, 169);
+}
+
+body {
+        background-color: rgb(127, 204, 127);
+        position: absolute;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        font-family: 'Noto Sans', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif, sans-serif;
+}

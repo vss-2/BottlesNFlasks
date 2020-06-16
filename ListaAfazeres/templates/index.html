@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='files/index.css') }}">
 <div class="content">
     <table>
         <tr>
@@ -13,18 +14,18 @@
         </tr>
         {% for tarefa in todas_tarefas %}
         <tr>
-            <td>{{ tarefa.conteudo }}</td>
-            <td>{{ tarefa.data_criacao }}</td>
-            <td>
-                <a href="/deletar/{{tarefa.id}}">Apagar</a>
-                <a href="/edit/{{tarefa.id}}">Editar</a>
+            <td class="left">{{ tarefa.conteudo }}</td>
+            <td class="middle"> {{ tarefa.data_criacao.day }}-{{ tarefa.data_criacao.month }}-{{ tarefa.data_criacao.year - 2000 }} às {{ tarefa.data_criacao.hour }}:{{ tarefa.data_criacao.minute }} </td>
+            <td class="right">
+                <a class="delete" title="Apagar nota" href="/deletar/{{tarefa.id}}">🗑️</a>
+                <a class="edit" title="Editar nota" href="/edit/{{tarefa.id}}">✏️</a>
             </td>
         </tr>
         {% endfor %}
     </table>
     <form action="/" method="POST">
-        <input type="text" name="descricao" id="content">
-        <input type="submit" value="Adicionar">
+        <input type="text" class="textfield" name="descricao" id="content">
+        <input type="submit" class="button" value="Adicionar">
     </form>
 </div>
 {% endblock %}
