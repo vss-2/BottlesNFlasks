@@ -24,6 +24,10 @@ class Choice(models.Model):
 
         pergunta = models.ForeignKey(Question, on_delete=models.CASCADE)
         escolha  = models.CharField(max_length=200)
+        time_1   = models.CharField(max_length=5)
+        time_2   = models.CharField(max_length=5)
+        time_3   = models.CharField(max_length=5)
+        time_4   = models.CharField(max_length=5)
         votos    = models.IntegerField(default=0)
         # A foreign key é usada para os tipos de relacionamentos
         # Muitos para um, muitos para muitos e um para um

@@ -1,0 +1,14 @@
+{% if ultima_quest_lista %}
+<ul>
+        {% for questao in ultima_quest_lista %}
+        <li>
+                <a href="/polls/{{ questao.id }}/">{{ questao.txt_pergunta }}</a>                
+        </li>
+        <li>
+                <a href="/polls/{{ questao.id }}">{{ questao.txt_pergunta }}</a></li>
+        </li>
+        {% endfor %}
+</ul>
+{% else %}
+<p>Sem perguntar disponíveis</p>
+{% endif %}
